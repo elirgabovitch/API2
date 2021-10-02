@@ -1,38 +1,64 @@
-const baseURL = "api.giphy.com/v1/gifs/random"; // declare baseURL
-const key = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl"; // declare API key
-let url;
+// const baseURL = "api.giphy.com/v1/gifs/random"; // declare baseURL
+// const key = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl"; // declare API key
+// let url;
 
-// SEARCH FORM
-//start DOM elements
-const searchTerm = document.querySelector(".search"); // basically connecting JS to first of each HTML element
-const searchForm = document.querySelector("form");
-const submitBtn = document.querySelector(".submit");
+// function fetchData(e) {
+//     e.preventDefault();
+//     let input = document.getElementById('inputGif');
+//     let gifDisplay = input.nodeValue;
+//     url = baseURL + '?api_key=' + key + '&q=' + gifDisplay
+    
+
+//     fetch(url)
+//     .then (response => {
+//         return response.json();
+//     })
+//     .then(data => {
+//         displayResults(data);
+//     })
+// }
+
+// function displayResults(data) {
+//     const section = document.querySelector('section')
+//     while (section.firstChild) {
+//         section.removeChild(section.firstChild)
+//     }
+//     let dashOutput = `Enjoy your random GIF ${data} `
+// }
+
+// let submitBtn = document.getElementById('submitBtn')
+// submitBtn.addEventListener('click', fetchData)
 
 
-//RESULTS SECTION
-const section = document.querySelector("section");
-//End DOM elements
 
 
-//EVENT LISTENERS ('Listening' to HTML for actions)
-searchForm.addEventListener("submit", fetchResults); // perform a function, when doing an action (in this case "submitting" the button)
 
 
-function fetchResults(e) { //e = parameter meaning 'event'
-    e.preventDefault();     //method (prevent page from refreshing which would wipe out your search term)
-    // Assemble the full url
-    url = baseURL + '?api-key=' + key + '&q=' + searchTerm.value; //building out the url to search for the right thing
-    console.log("URL:", url);
-};
 
-function displayResults(json) {
-    while (section.firstChild) {           //while (is a loop function -- asking if section.firstChild is true (is there a result there? if so, remove it)) something is on the screen, display that info, but if you run it again remove those results and replace them with the new info
-        section.removeChild(section.firstChild);
-    };
-
-    // for (let i = 0; i < articles.length; i++) {
-    //     let gif = document.createElement("gif"); // taking elements of objects in docs array and creating them as variables and then adding them into the HTML
-        let current = gif[i]; //storing whichever article is currently being referred to in a variable
-
-        section.appendChild(gif);
-    }
+let APIKEY = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl";
+      document.addEventListener("DOMContentLoaded", init);
+      function init() {
+        document.getElementById("btnSearch").addEventListener("click", ev => {
+          ev.preventDefault(); //to stop the page reload
+          let str = document.getElementById("search").value.trim();
+          let url = `https://api.giphy.com/v1/gifs/random?api_key=${APIKEY}&limit=1&q=${str}`;
+          console.log(url);
+          fetch(url)
+            .then(response => response.json())
+            .then(content => {
+                console.log(content.data);
+                console.log('META', content.meta);
+                let fig = document.createElement('figure');
+                let img = document.createElement('img');
+                img.src = content.fixed_height_downsampled_url;
+                img.alt = 'Sorry, try again'
+                fig.appendChild(img);
+                let out = document.querySelector('.out');
+                out.insertAdjacentElement('afterbegin', fig); // places image at the top ... do I want to replace the image? if so, change this
+                document.querySelector('#search').value = ''; //clears out the search bar after returning results
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        });
+      }

@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="Content-Security-Policy"
+      content="default-src: http: https: 'self'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Giphy API Demo</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <form>
+      <label for="search">Search</label>
+      <input id="search" type="search" />
+      <button id="btnSearch">Go</button>
+    </form>
+    <div class="out"></div>
+  </main>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +37,20 @@
 </head>
 <body>
     <h1>GIPHY Random GIF Generator</h1>
-    <div class="wrapper">
+    <h4 class="subheading" id="subheading"><em>Type any keyword to return a random related GIF</em></h4>
+
     
+    <div class="searchElements">
+    <input class="submit" id="inputGif"></input>
 
+    <button class="submit" id="submitBtn">Submit</button>
+    </div>
 
+ //   <!-- Display GIF here-->
+  <!-- //  <section id="section"><br>
 
-
-
+ //   </section>
+</div>
     <script type="text/javascript" src="main.js"></script>
 </body>
-</html>
+</html> //
