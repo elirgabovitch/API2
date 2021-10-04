@@ -40,22 +40,22 @@ let APIKEY = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl";
       function init() {
         document.getElementById("btnSearch").addEventListener("click", ev => {
           ev.preventDefault(); //to stop the page reload
-          let str = document.getElementById("search").value.trim();
-          let url = `https://api.giphy.com/v1/gifs/random?api_key=${APIKEY}&limit=1&q=${str}`;
+          let url = `https://api.giphy.com/v1/gifs/random?api_key=${APIKEY}&limit=1&q=`;
           console.log(url);
           fetch(url)
             .then(response => response.json())
             .then(content => {
                 console.log(content.data);
                 console.log('META', content.meta);
-                let fig = document.createElement('figure');
-                let img = document.createElement('img');
-                img.src = content.fixed_height_downsampled_url;
-                img.alt = 'Sorry, try again'
-                fig.appendChild(img);
                 let out = document.querySelector('.out');
-                out.insertAdjacentElement('afterbegin', fig); // places image at the top ... do I want to replace the image? if so, change this
-                document.querySelector('#search').value = ''; //clears out the search bar after returning results
+                while (out.firstChild) {
+                    out.removeChild(out.firstChild)
+                }
+                let img = document.createElement('img');
+                img.src = content.data.images.original.webp;
+                img.alt = 'Sorry, try again'
+                out.appendChild(img);
+                
             })
             .catch(err => {
               console.error(err);
