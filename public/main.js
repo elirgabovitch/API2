@@ -1,40 +1,3 @@
-// const baseURL = "api.giphy.com/v1/gifs/random"; // declare baseURL
-// const key = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl"; // declare API key
-// let url;
-
-// function fetchData(e) {
-//     e.preventDefault();
-//     let input = document.getElementById('inputGif');
-//     let gifDisplay = input.nodeValue;
-//     url = baseURL + '?api_key=' + key + '&q=' + gifDisplay
-    
-
-//     fetch(url)
-//     .then (response => {
-//         return response.json();
-//     })
-//     .then(data => {
-//         displayResults(data);
-//     })
-// }
-
-// function displayResults(data) {
-//     const section = document.querySelector('section')
-//     while (section.firstChild) {
-//         section.removeChild(section.firstChild)
-//     }
-//     let dashOutput = `Enjoy your random GIF ${data} `
-// }
-
-// let submitBtn = document.getElementById('submitBtn')
-// submitBtn.addEventListener('click', fetchData)
-
-
-
-
-
-
-
 let APIKEY = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl";
       document.addEventListener("DOMContentLoaded", init);
       function init() {
@@ -54,8 +17,7 @@ let APIKEY = "BjYalBiTKOVLv3Jsih5Ukwu5cTCIxyJl";
                 let img = document.createElement('img');
                 img.src = content.data.images.original.webp;
                 img.alt = 'Sorry, try again'
-                out.appendChild(img);
-                
+                out.appendChild(img);  
             })
             .catch(err => {
               console.error(err);
